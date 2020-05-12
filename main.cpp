@@ -16,11 +16,15 @@ int main(int argc, char *argv[]) {
 		STACK<int, 5> _stack = 1;
 		_stack.push(2);
 		_stack.push(3);
-		_stack.push(4);
-		_stack.push(5);
-		_stack.push(6);
-		_stack.push(7);
+		
+		int poped = _stack.pop();
+		poped = _stack.pop();
+		poped = _stack.pop();
+		poped = _stack.pop();
+		poped = _stack.pop();
+		cout<<"poped = "<<poped<<endl;
 		_stack.push(2);
+		_stack.push(3);
 		print(_stack);
 	}
 	catch(Exception e) {

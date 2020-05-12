@@ -81,6 +81,17 @@ void STACK<T, totalSize>::push(T value) {
 	this->pushElementToStack(value);
 }
 
+template<class T, int totalSize>
+int STACK<T, totalSize>::pop() {
+	if(this->isEmpty()) return '\0';
+	
+	T popedElement = this->arr[this->topIndex];
+	this->arr[this->topIndex--] = '\0';
+	this->size--;
+	
+	return popedElement;
+}
+
 
 template<class T, int totalSize>
 template<size_t n>
@@ -95,12 +106,13 @@ void STACK<T, totalSize>::validateArray(int array_size) {
 	cout<<"validating...."<<endl;
 	int remaindStackSpace = (totalSize - this->size);
 	cout<<"remaindStackSpace = "<<remaindStackSpace<<endl;
-	if(totalSize < 5) throw SizeException("Stack must be of size 5.");
+	if(totalSize < 1) throw SizeException("Stack must be of size 1.");
 	if( (array_size > totalSize) || (array_size > remaindStackSpace) ) throw SizeException("Provided array is larger than the stack size.");
 }
 
 template<class T, int totalSize>
 void STACK<T, totalSize>::canPushNewElement() {
+	if(totalSize < 1) throw SizeException("Stack must be of size 1.");
 	if(this->isFull()) throw SizeException("Stack is Full.");
 }
 
@@ -125,14 +137,18 @@ void print(STACK<T, totalSize> stack) {
 }
 
 template<class T, int totalSize>
-void STACK<T, totalSize>::print() {		
+void STACK<T, totalSize>::print() {
+	
+	cout<<"-------------------------------------"<<endl;
 	cout<<"size = "<<this->size<<endl;
+	cout<<"topIndex = "<<this->topIndex<<endl;
 	cout<<"{";
 	for(int i=0; i<this->size; i++) {
 		cout<<this->arr[i];
-		if(i < this->size-1) cout<<",";
+		if(i < this->size-1) cout<<", ";
 	}
 	cout<<"}"<<endl;
+	cout<<"-------------------------------------"<<endl;
 }
 
 template<class T, int totalSize>
